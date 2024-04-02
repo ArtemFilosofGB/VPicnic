@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
@@ -34,6 +35,16 @@ public abstract class IOFileConsole {
         for (Map.Entry<String, Integer> elem : entriesSortedByValues(mapWords)) {
             System.out.println(elem);
         }
+    }
+    public static String getString(String openFilePath) {
+        String text = null;
+        try {
+            text = readFile(openFilePath, StandardCharsets.UTF_8);
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+        return text;
     }
     public static void WriteToFile(String exportFilePath, Map<String, Integer> mapWords) {
         try (PrintWriter out = new PrintWriter(exportFilePath)) {
